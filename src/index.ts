@@ -1,6 +1,7 @@
 import "reflect-metadata"
 import app from './app'
 import { AppDataSource } from './db'
+const test = "test"
 
 async function main(){
     try {
