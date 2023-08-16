@@ -1,5 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn, BaseEntity, ManyToMany, JoinTable} from "typeorm";
-import { Profile } from "./profilesEntities"
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany, BaseEntity } from "typeorm";
 import { Product } from "./productsEntities";
 
 @Entity()
@@ -19,12 +18,11 @@ export class Client extends BaseEntity{
     @Column()
     tel: string
 
-    @OneToOne(() => Profile)
-    @JoinColumn()
-    profile: Profile;
+    // @OneToOne(() => Profile)
+    // @JoinColumn()
+    // profile: Profile;
 
-    @ManyToMany(() => Product)
-    @JoinTable()
+    @OneToMany(() => Product, product => product.client)
     products: Product[];
   
 

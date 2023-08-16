@@ -1,8 +1,12 @@
 import { Request, Response } from "express"
-import { displayClientService, postClientService, deleteClientService, updateClientService } from "../services/clients.service"
+import { displayClientService, displayOneClientService, postClientService, deleteClientService, updateClientService } from "../services/clients.service"
 
 export const displayClients = (req:Request, res:Response) => {
     displayClientService(req, res)
+}
+
+export const displayOneClient = (req:Request, res:Response) => {
+    displayOneClientService(req, res)
 }
 
 export const postClient = (req:Request, res:Response) => {

@@ -15,6 +15,6 @@ export class Profile extends BaseEntity{
   @Column()
   rol: string;
 
-  @OneToOne(() => Client, client => client.profile) 
-  client: Client;
+  // @OneToOne(() => Client, client => client.profile) 
+  // client: Client;
 } 

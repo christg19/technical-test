@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { displayClients, postClient, deleteClient, updateClient } from "../controllers/clients.controller";
+import { displayClients, displayOneClient, postClient, deleteClient, updateClient } from "../controllers/clients.controller";
 
 const router = Router()
 
 router.get('/client', displayClients)
+
+router.get('/client/:id', displayOneClient)
 
 router.post('/client', postClient)
 

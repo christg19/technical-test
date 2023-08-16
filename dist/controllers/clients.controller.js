@@ -1,11 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateClient = exports.deleteClient = exports.postClient = exports.displayClients = void 0;
+exports.updateClient = exports.deleteClient = exports.postClient = exports.displayOneClient = exports.displayClients = void 0;
 const clients_service_1 = require("../services/clients.service");
 const displayClients = (req, res) => {
     (0, clients_service_1.displayClientService)(req, res);
 };
 exports.displayClients = displayClients;
+const displayOneClient = (req, res) => {
+    (0, clients_service_1.displayOneClientService)(req, res);
+};
+exports.displayOneClient = displayOneClient;
 const postClient = (req, res) => {
     (0, clients_service_1.postClientService)(req, res);
 };
