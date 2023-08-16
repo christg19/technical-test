@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
-import { Client } from "./entities/clientEntities";
-import { Product } from "./entities/productsEntities";
-import { Profile } from "./entities/profilesEntities";
+import { Client } from "./model/clientEntities";
+import { Product } from "./model/productsEntities";
+import { Profile } from "./model/profilesEntities";
 
 export const AppDataSource = new DataSource ({
     type: "postgres",
@@ -9,7 +9,7 @@ export const AppDataSource = new DataSource ({
     port: 5432,
     username: "postgres",
     password: "kuribo45",
-    database: "partner_db",
+    database: "mockapi_db",
     synchronize: true,
     logging: true,
     entities:[Client, Product, Profile],
