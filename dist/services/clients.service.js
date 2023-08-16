@@ -9,12 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteClientService = exports.updateClientService = exports.postClientService = exports.displayClientService = void 0;
+exports.deleteClientService = exports.updateClientService = exports.postClientService = exports.displayOneClientService = exports.displayClientService = void 0;
 const clientEntities_1 = require("../model/clientEntities");
 const db_1 = require("../db");
-const productsEntities_1 = require("../model/productsEntities");
 const clientRepository = db_1.AppDataSource.getRepository(clientEntities_1.Client);
-const productRepository = db_1.AppDataSource.getRepository(productsEntities_1.Product);
 const displayClientService = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const client = yield clientRepository.find();
@@ -25,8 +23,22 @@ const displayClientService = (req, res) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.displayClientService = displayClientService;
+const displayOneClientService = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    try {
+        const client = yield clientRepository.findOne({ where: { id: parseInt(id) } });
+        if (!client) {
+            return res.status(404).json({ message: 'Cliente no encontrado' });
+        }
+        res.status(200).json(client);
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Error al obtener el cliente' });
+    }
+});
+exports.displayOneClientService = displayOneClientService;
 const postClientService = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, last_name, email, tel, products } = req.body;
+    const { name, last_name, email, tel } = req.body;
     const client = new clientEntities_1.Client();
     client.name = name;
     client.email = email;
@@ -43,14 +55,13 @@ const postClientService = (req, res) => __awaiter(void 0, void 0, void 0, functi
 exports.postClientService = postClientService;
 const updateClientService = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { name, last_name, email, tel, products } = req.body;
+    const { name, last_name, email, tel } = req.body;
     try {
         const updateResult = yield clientRepository.update({ id: parseInt(id) }, {
             name: name,
             last_name: last_name,
             email: email,
             tel: tel,
-            products: products
         });
         if (updateResult.affected === 0) {
             return res.status(404).json({ message: 'Cliente no encontrado' });
