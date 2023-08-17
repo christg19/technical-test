@@ -9,3 +9,4 @@
 <p>React App</p>
 
 # DB Diagram
+![Logo](diagram-db.png)
