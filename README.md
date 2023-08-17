@@ -10,3 +10,7 @@
 
 # DB Diagram
 ![Logo](diagram-db.png)
+
+# Preview Main
+![GIF](explore.gif)
+![GIF](explore-1.gif)
