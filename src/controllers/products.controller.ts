@@ -1,8 +1,12 @@
 import { Request, Response } from "express"
-import { displayProductService, postProductService, deleteProductService, updateProductService} from "../services/products.service"
+import { displayProductService, displayOneProductService, postProductService, deleteProductService, updateProductService} from "../services/products.service"
 
 export const displayProducts = (req:Request, res:Response) => {
     displayProductService(req, res)
+}
+
+export const displayOneProduct = (req:Request, res:Response) => {
+    displayOneProductService(req, res)
 }
 
 export const postProduct = (req:Request, res:Response) => {

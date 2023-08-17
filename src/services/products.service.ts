@@ -14,6 +14,22 @@ export const displayProductService = async (req:Request, res:Response) => {
     }
 }
 
+export const displayOneProductService = async (req: Request, res: Response) => {
+    const id = req.params.id;
+    
+    try {
+        const product = await productRepository.findOne({ where: { id: parseInt(id) } });
+
+        if (!product) {
+            return res.status(404).json({ message: 'Producto no encontrado' });
+        }
+
+        res.status(200).json(product);
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener el producto' });
+    }
+}
+
 export const postProductService = async (req: Request, res: Response) => {
     const {productName, price, stock} = req.body
     

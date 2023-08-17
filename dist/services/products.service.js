@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateProductService = exports.deleteProductService = exports.postProductService = exports.displayProductService = void 0;
+exports.updateProductService = exports.deleteProductService = exports.postProductService = exports.displayOneProductService = exports.displayProductService = void 0;
 const db_1 = require("../db");
 const productsEntities_1 = require("../model/productsEntities");
 const productRepository = db_1.AppDataSource.getRepository(productsEntities_1.Product);
@@ -23,6 +23,20 @@ const displayProductService = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 });
 exports.displayProductService = displayProductService;
+const displayOneProductService = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    try {
+        const product = yield productRepository.findOne({ where: { id: parseInt(id) } });
+        if (!product) {
+            return res.status(404).json({ message: 'Producto no encontrado' });
+        }
+        res.status(200).json(product);
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Error al obtener el producto' });
+    }
+});
+exports.displayOneProductService = displayOneProductService;
 const postProductService = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { productName, price, stock } = req.body;
     const product = new productsEntities_1.Product();

@@ -1,8 +1,12 @@
 import { Request, Response } from "express"
-import { displayProfilesService, postProfileService, deleteProfileService, updateProfileService } from "../services/profiles.service"
+import { displayProfilesService, postProfileService, deleteProfileService, updateProfileService, displayOneProfileService } from "../services/profiles.service"
 
-export const displayProfiles = (res:Response) => {
-    displayProfilesService(res)
+export const displayProfiles = (req:Request, res:Response) => {
+    displayProfilesService(req,res)
+}
+
+export const displayOneProfile = (req:Request, res:Response) => {
+    displayOneProfileService(req, res)
 }
 
 export const postProfile = (req:Request, res:Response) => {

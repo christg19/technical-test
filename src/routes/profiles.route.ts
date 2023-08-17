@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { displayProfiles, postProfile, deleteProfile } from "../controllers/profiles.controller";
+import { displayProfiles, postProfile, deleteProfile, displayOneProfile } from "../controllers/profiles.controller";
 
 const router = Router()
 
 router.get('/profile', displayProfiles)
+
+router.get('/profile/:id', displayOneProfile)
 
 router.post('/profile', postProfile)
 

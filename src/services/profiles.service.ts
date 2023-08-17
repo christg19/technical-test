@@ -4,7 +4,7 @@ import { AppDataSource } from "../db";
 const profileRepository = AppDataSource.getRepository(Profile);
 
 
-export const displayProfilesService = async (res:Response) => {
+export const displayProfilesService = async (req:Request, res:Response) => {
     try {
         const profiles = await profileRepository.find()
 
@@ -13,6 +13,23 @@ export const displayProfilesService = async (res:Response) => {
         res.status(500).json({ message: 'Error al obtener los perfiles' })
     }
 }
+
+export const displayOneProfileService = async (req: Request, res: Response) => {
+    const id = req.params.id;
+    
+    try {
+        const profile = await profileRepository.findOne({ where: { id: parseInt(id) } });
+
+        if (!profile) {
+            return res.status(404).json({ message: 'Perfil no encontrado' });
+        }
+
+        res.status(200).json(profile);
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener el perfil' });
+    }
+}
+
 
 export const postProfileService = async (req: Request, res: Response) => {
     const { username, password, rol } = req.body

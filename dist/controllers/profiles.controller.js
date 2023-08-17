@@ -1,11 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateProfile = exports.deleteProfile = exports.postProfile = exports.displayProfiles = void 0;
+exports.updateProfile = exports.deleteProfile = exports.postProfile = exports.displayOneProfile = exports.displayProfiles = void 0;
 const profiles_service_1 = require("../services/profiles.service");
-const displayProfiles = (res) => {
-    (0, profiles_service_1.displayProfilesService)(res);
+const displayProfiles = (req, res) => {
+    (0, profiles_service_1.displayProfilesService)(req, res);
 };
 exports.displayProfiles = displayProfiles;
+const displayOneProfile = (req, res) => {
+    (0, profiles_service_1.displayOneProfileService)(req, res);
+};
+exports.displayOneProfile = displayOneProfile;
 const postProfile = (req, res) => {
     (0, profiles_service_1.postProfileService)(req, res);
 };

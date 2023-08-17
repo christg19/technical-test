@@ -9,11 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateProfileService = exports.deleteProfileService = exports.postProfileService = exports.displayProfilesService = void 0;
+exports.updateProfileService = exports.deleteProfileService = exports.postProfileService = exports.displayOneProfileService = exports.displayProfilesService = void 0;
 const profilesEntities_1 = require("../model/profilesEntities");
 const db_1 = require("../db");
 const profileRepository = db_1.AppDataSource.getRepository(profilesEntities_1.Profile);
-const displayProfilesService = (res) => __awaiter(void 0, void 0, void 0, function* () {
+const displayProfilesService = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const profiles = yield profileRepository.find();
         res.status(200).json(profiles);
@@ -23,6 +23,20 @@ const displayProfilesService = (res) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.displayProfilesService = displayProfilesService;
+const displayOneProfileService = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    try {
+        const profile = yield profileRepository.findOne({ where: { id: parseInt(id) } });
+        if (!profile) {
+            return res.status(404).json({ message: 'Perfil no encontrado' });
+        }
+        res.status(200).json(profile);
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Error al obtener el perfil' });
+    }
+});
+exports.displayOneProfileService = displayOneProfileService;
 const postProfileService = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password, rol } = req.body;
     const profile = new profilesEntities_1.Profile();
