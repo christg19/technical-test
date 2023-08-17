@@ -14,3 +14,7 @@
 # Preview Main
 ![GIF](explore-1.gif)
 ![GIF](explore-2.gif)
+
+# How to use
+`npm install`
+`npm run dev`
