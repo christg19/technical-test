@@ -12,5 +12,5 @@
 ![Logo](diagram-db.png)
 
 # Preview Main
-![GIF](explore.gif)
 ![GIF](explore-1.gif)
+![GIF](explore-2.gif)
