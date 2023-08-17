@@ -32,6 +32,10 @@ export const displayOneProductService = async (req: Request, res: Response) => {
 
 export const postProductService = async (req: Request, res: Response) => {
     const {productName, price, stock} = req.body
+
+    if (!productName || !price || !stock) {
+        return res.status(400).json({ message: 'Campos incompletos' });
+    }
     
     const product = new Product()
      

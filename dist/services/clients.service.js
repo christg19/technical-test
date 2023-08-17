@@ -39,6 +39,9 @@ const displayOneClientService = (req, res) => __awaiter(void 0, void 0, void 0, 
 exports.displayOneClientService = displayOneClientService;
 const postClientService = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, last_name, email, tel } = req.body;
+    if (!name || !last_name || !email || !tel) {
+        return res.status(400).json({ message: 'Campos incompletos' });
+    }
     const client = new clientEntities_1.Client();
     client.name = name;
     client.email = email;

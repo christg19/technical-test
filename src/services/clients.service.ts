@@ -34,6 +34,10 @@ export const displayOneClientService = async (req: Request, res: Response) => {
 export const postClientService = async (req: Request, res: Response) => {
     const { name, last_name, email, tel } = req.body
 
+    if (!name || !last_name || !email || !tel) {
+        return res.status(400).json({ message: 'Campos incompletos' });
+    }
+
     const client = new Client()
     client.name = name
     client.email = email

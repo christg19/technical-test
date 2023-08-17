@@ -33,6 +33,10 @@ export const displayOneProfileService = async (req: Request, res: Response) => {
 
 export const postProfileService = async (req: Request, res: Response) => {
     const { username, password, rol } = req.body
+
+    if (!username || !password || !rol) {
+        return res.status(400).json({ message: 'Campos incompletos' });
+    }
     
     const profile = new Profile()
     profile.username = username

@@ -39,6 +39,9 @@ const displayOneProfileService = (req, res) => __awaiter(void 0, void 0, void 0,
 exports.displayOneProfileService = displayOneProfileService;
 const postProfileService = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password, rol } = req.body;
+    if (!username || !password || !rol) {
+        return res.status(400).json({ message: 'Campos incompletos' });
+    }
     const profile = new profilesEntities_1.Profile();
     profile.username = username;
     profile.password = password;

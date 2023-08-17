@@ -39,6 +39,9 @@ const displayOneProductService = (req, res) => __awaiter(void 0, void 0, void 0,
 exports.displayOneProductService = displayOneProductService;
 const postProductService = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { productName, price, stock } = req.body;
+    if (!productName || !price || !stock) {
+        return res.status(400).json({ message: 'Campos incompletos' });
+    }
     const product = new productsEntities_1.Product();
     product.productName = productName;
     product.price = price;
