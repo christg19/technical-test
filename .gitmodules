@@ -1,0 +1,3 @@
+[submodule "alterna-g4-react-app"]
+	path = alterna-g4-react-app
+	url = https://github.com/christgb/react-mock
